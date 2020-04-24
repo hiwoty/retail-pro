@@ -1,0 +1,414 @@
+#%RAML 1.0
+title: product-retail-api
+version: 
+description: this is api processes product retail
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/76d0e8dc-86e4-49d3-b657-697ac9cb1a6d/retails # baseUri: http://localhost:8081/retails
+/products:
+  get:
+    description: fetches list of all product data
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "id" : 100,
+                "name" : "tv",
+                "barcode" : "1234567890",
+                "rate" : 1000.00,
+                "productCategory" : "electonics"
+
+              }
+      500:
+        body:
+          application/json:
+            example:
+              {
+                "status" : 500,
+                "message" : "Internal server error"
+              }
+                      
+  post:
+    description: Creates a new product based on request JSON 
+    body:
+      application/json:
+        example:
+          {
+            id: 100,
+            "name": "cell phone",
+            "barcode": "123567890",
+            "rate" : 550.50,
+            "productCategory" : "electonics"
+          }
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              {
+                "status" : 201,
+                "message" : "product created"
+              }
+      500:
+        body:
+          application/json:
+            example:
+              {
+                "status" :500,
+                "message" : "Internal server error"
+              }          
+  /id:
+    description: fetch a specific product with id  
+    get:
+    
+     queryParameters:
+      id:
+        displayName: id
+        required: true
+        type: integer
+    
+     responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                id: 100,
+                "name": "cell phone",
+                "barcode": "123567890",
+                "rate" : 550.50,
+                "productCategory" : "electonics"
+              }
+
+ 
+    put:
+      description: Updates product data based on request JSON
+      body:
+      
+       application/json:
+        example:
+          {
+            "name" : "cell phone",
+            "barcode": "9876543210",
+            "rate": 200.99
+          }
+      responses:
+       200:
+        body:
+          application/json:
+            example:
+              {
+                "status" : 200,
+                "message" : "resource updated successfully"
+              }
+       404:
+        body:
+          application/json:
+            example:
+              {
+                "status" :404,
+                "message" : "resource does not exist"
+              }
+       500:
+        body:
+          application/json:
+            example:
+              {
+                "status" :500,
+  
+                "message" : "internal serve error"
+              }
+    delete:
+     description: Delete an existing product if it is not associated with a bill.
+     responses:
+      200:
+        body:
+          application/json:
+           example:
+             { "status": 200, "message": "resource deleted successfully"}
+      400:
+        body:
+          application/json:
+           example:
+             { "status": 200, "message": "resource deleted successfully"}        
+/bills:
+  get:
+    description: fetches list of all product data
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+               "id" : 100,
+               "noOfItems": 5,
+               "totalCost" : 2000.00,
+               "totalTax" : 2000.00,
+               "totalValue": 30000.00
+
+              }
+      500:
+        body:
+          application/json:
+            example:
+              {
+                "status" : 500,
+                "message" : "Internal server error"
+              }
+                      
+  post:
+    description: Creates a new product based on request JSON 
+    body:
+      application/json:
+        example:
+          {
+            
+               "id" : 100,
+               "noOfItems": 5,
+               "totalCost" : 2000.00,
+               "totalTax" : 2000.00,
+               "totalValue": 30000.00
+
+              
+          }
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              {
+                "status" : 201,
+                "message" : "bill created"
+              }
+      500:
+        body:
+          application/json:
+            example:
+              {
+                "status" :500,
+                "message" : "Internal server error"
+              }          
+
+  /id:
+    description: fetch a specific bill with id
+    get:
+     queryParameters:
+      id:
+        displayName: productId
+        required: true
+        type: integer
+     responses:
+      200:
+        body:
+          application/json:
+            example:
+               {
+               "id" : 100,
+               "noOfItems": 5,
+               "totalCost" : 2000.00,
+               "totalTax" : 2000.00,
+               "totalValue": 30000.00
+
+              }
+
+ 
+    put:
+      description: Updates product data based on request JSON
+      body:
+      
+       application/json:
+        example:
+          {
+               
+               "noOfItems": 5,
+               "totalCost" : 2000.00,
+               "totalTax" : 2000.00,
+               "totalValue": 30000.00
+
+              }
+      responses:
+       200:
+        body:
+          application/json:
+            example:
+              {
+                "status" : 200,
+                "message" : "resource updated successfully"
+              }
+       404:
+          body:
+           application/json:
+            example:
+              {
+                "status" :404,
+                "message" : "resource does not exist"
+              }
+       500:
+        body:
+          application/json:
+            example:
+              {
+                "status" :500,
+  
+                "message" : "internal serve error"
+              }
+    delete:
+     description: Delete an existing product if it is not associated with a bill.
+     responses:
+      200:
+        body:
+          application/json:
+           example:
+             { "status": 200, "message": "resource deleted successfully"}
+      400:
+        body:
+          application/json:
+           example:
+             { "status": 200, "message": "resource deleted successfully"}        
+/productCategories:
+  get:
+    description: fetches list of all product data
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+               "id" : 100,
+               "noOfItems": 5,
+               "totalCost" : 2000.00,
+               "totalTax" : 2000.00,
+               "totalValue": 30000.00
+
+              }
+      500:
+        body:
+          application/json:
+            example:
+              {
+                "status" : 500,
+                "message" : "Internal server error"
+              }
+                      
+  post:
+    description: Creates a new product based on request JSON 
+    body:
+      application/json:
+        example:
+          {
+            
+               "productCategory" : "electornics"
+
+              
+          }
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              {
+                "status" : 201,
+                "message" : "bill created"
+              }
+      500:
+        body:
+          application/json:
+            example:
+              {
+                "status" :500,
+                "message" : "Internal server error"
+              }  
+  /id:
+    get:
+      description: fetch a specific productcatagory
+      queryParameters:
+        id:
+          displayName: id
+          type: integer
+          required: true
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                {"productCategory": "eletronics"}
+        404:
+          body:
+            application/json:
+              example:
+                {
+                  "status": 404,
+                  "message" :" product category not found"
+
+                }
+    put:
+      description: Updates productcatagory data based on request JSON
+      body:
+       application/json:
+        example:
+          {
+               
+               "productCategory": "electronics"
+               
+
+          }
+      responses:
+       200:
+        body:
+          application/json:
+            example:
+              {
+                "status" : 200,
+                "message" : "resource updated successfully"
+              }
+       404:
+        body:
+          application/json:
+            example:
+              {
+                "status" :404,
+                "message" : "resource does not exist"
+              }
+       500:
+        body:
+          application/json:
+            example:
+              {
+                "status" :500,
+  
+                "message" : "internal serve error"
+              }
+    delete:
+      description: Delete an existing product category.
+      responses:
+       200:
+        body:
+          application/json:
+           example:
+             { "status": 200, "message": "resource deleted successfully"}
+       400:
+        body:
+          application/json:
+           example:
+             { "status": 200, "message": "resource deleted successfully"}   
+
+                
+              
+                    
+              
+            
+             
+         
+
+
+      
+ 
+
+
+
+
+          
+          
+      
+    
+  
